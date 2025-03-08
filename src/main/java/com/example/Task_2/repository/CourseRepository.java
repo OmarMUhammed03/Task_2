@@ -1,6 +1,6 @@
 package com.example.Task_2.repository;
 
-import com.example.Task_2.Table.Course;
+import com.example.Task_2.model.Course;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
