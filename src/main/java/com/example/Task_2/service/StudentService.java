@@ -31,4 +31,7 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public List<Student> getStudentsByCourseId(Integer courseId) {
+        return studentRepository.findStudentsByCourseId(courseId);
+    }
 }
