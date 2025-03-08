@@ -7,7 +7,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface CourseRepository extends JpaRepository<Course, Integer> {
+
+    @Query("SELECT c FROM Course c WHERE c.instructor.id = :instructorId")
+    List<Course> findCoursesByInstructorId(@Param("instructorId") Integer instructorId);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO student_course (student_id, course_id) VALUES (:studentId, :courseId)", nativeQuery = true)
