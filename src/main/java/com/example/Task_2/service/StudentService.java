@@ -1,11 +1,10 @@
 package com.example.Task_2.service;
 
-import com.example.Task_2.Table.Student;
+import com.example.Task_2.model.Student;
 import com.example.Task_2.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
