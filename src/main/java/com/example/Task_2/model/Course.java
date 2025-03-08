@@ -1,12 +1,14 @@
-package com.example.Task_2.Table;
+package com.example.Task_2.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 @Entity
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +28,14 @@ public class Course {
     private Instructor instructor;
 
 
+    public Course(String name, String code, int credit, Instructor instructor) {
+        this.name = name;
+        this.code = code;
+        this.instructor = instructor;
+        this.credit = credit;
+    }
 
+    public Course() {
+
+    }
 }
