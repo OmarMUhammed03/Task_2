@@ -19,8 +19,11 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Optional<Student> getStudentById(Integer id) {
-        return studentRepository.findById(id);
+    public Student getStudentById(Integer id) {
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student == null)
+            throw new IllegalArgumentException("Student not found");
+        return student;
     }
 
     public Student saveStudent(Student student) {
