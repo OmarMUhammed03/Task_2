@@ -1,4 +1,4 @@
-package com.example.Task_2.Table;
+package com.example.Task_2.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -27,4 +27,12 @@ public class Student {
 
     private List<Course> courses;
 
+    public Student(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public Student() {
+
+    }
 }
