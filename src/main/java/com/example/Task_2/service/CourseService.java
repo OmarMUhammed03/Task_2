@@ -1,6 +1,6 @@
 package com.example.Task_2.service;
 
-import com.example.Task_2.Table.Course;
+import com.example.Task_2.model.Course;
 import com.example.Task_2.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 
