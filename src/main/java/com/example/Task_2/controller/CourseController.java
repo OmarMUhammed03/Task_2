@@ -1,6 +1,6 @@
 package com.example.Task_2.controller;
 
-import com.example.Task_2.Table.Course;
+import com.example.Task_2.model.Course;
 import com.example.Task_2.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
