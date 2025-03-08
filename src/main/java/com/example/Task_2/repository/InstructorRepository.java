@@ -1,6 +1,6 @@
 package com.example.Task_2.repository;
 
-import com.example.Task_2.Table.Instructor;
+import com.example.Task_2.model.Instructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
