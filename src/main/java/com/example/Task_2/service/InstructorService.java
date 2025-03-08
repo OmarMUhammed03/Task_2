@@ -1,6 +1,6 @@
 package com.example.Task_2.service;
 
-import com.example.Task_2.Table.Instructor;
+import com.example.Task_2.model.Instructor;
 import com.example.Task_2.repository.InstructorRepository;
 import org.springframework.stereotype.Service;
 
