@@ -1,4 +1,4 @@
-package com.example.Task_2.Table;
+package com.example.Task_2.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,4 +19,13 @@ public class Instructor {
 
     @OneToMany(mappedBy = "instructor")
     private List<Course> courses;
+
+    public Instructor(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public Instructor() {
+
+    }
 }
