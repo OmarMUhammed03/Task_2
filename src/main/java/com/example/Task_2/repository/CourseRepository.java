@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    @Query("SELECT c FROM Course c WHERE c.instructor.id = :instructorId")
-    List<Course> findCoursesByInstructorId(@Param("instructorId") Integer instructorId);
+
+    List<Course> findCoursesByInstructorId(Integer instructorId);
 
     @Modifying
     @Transactional
@@ -21,6 +21,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM student_course where student_id = studentId AND course_id = :courseId)", nativeQuery = true)
+    @Query(value = "DELETE FROM student_course where student_id = :studentId AND course_id = :courseId", nativeQuery = true)
     void unenrollStudent(@Param("courseId") Integer courseId, @Param("studentId") Integer studentId);
 }
