@@ -1,14 +1,16 @@
 package com.example.Task_2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
-
+@Table(name = "course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +23,57 @@ public class Course {
     private Integer credit;
 
     @ManyToMany(mappedBy = "courses")
-    private List<Student> students;
+    @JsonIgnore
+    private List<Student> students = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
+    @JsonIgnore
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Integer getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Integer credit) {
+        this.credit = credit;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 
     public Course(String name, String code, int credit, Instructor instructor) {
         this.name = name;
@@ -37,5 +84,9 @@ public class Course {
 
     public Course() {
 
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 }
