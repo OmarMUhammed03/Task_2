@@ -19,7 +19,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    private static <T> ResponseEntity<T> handleRequest(Supplier<T> serviceMethod) {
+    private static <T> ResponseEntity<T> handleRequest(Supplier<T> serviceMethod, String successMessage) {
         try {
             return ResponseEntity.ok(serviceMethod.get());
         } catch (IllegalArgumentException e) {
@@ -29,10 +29,10 @@ public class CourseController {
         }
     }
 
-    private static ResponseEntity<String> handleStringRequest(Runnable serviceMethod) {
+    private static ResponseEntity<String> handleStringRequest(Runnable serviceMethod, String successMessage) {
         try {
             serviceMethod.run();
-            return ResponseEntity.ok("Operation completed successfully");
+            return ResponseEntity.ok(successMessage);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
@@ -43,22 +43,21 @@ public class CourseController {
 
     @GetMapping
     public ResponseEntity<List<Course>> getAllCourses() {
-        return handleRequest(() -> courseService.getAllCourses());
+        return handleRequest(() -> courseService.getAllCourses(), "Courses retrieved successfully");
     }
 
-    @GetMapping("/instructor/{instructorId}")
+    @GetMapping("/{instructorId}")
     public ResponseEntity<List<Course>> getCoursesByInstructor(@PathVariable Integer instructorId) {
-        return handleRequest(() -> courseService.getCoursesByInstructorId(instructorId));
+        return handleRequest(() -> courseService.getCoursesByInstructorId(instructorId), "Courses for instructor retrieved successfully.");
     }
 
     @PostMapping("/{courseId}/students/{studentId}")
     public ResponseEntity<String> enrollStudent(@PathVariable Integer courseId, @PathVariable Integer studentId) {
-        return handleStringRequest(() -> courseService.enrollStudent(courseId, studentId));
+        return handleStringRequest(() -> courseService.enrollStudent(courseId, studentId), "Student enrolled in course successfully.");
     }
 
     @PutMapping("/{courseId}/students/{studentId}")
     public ResponseEntity<String> unenrollStudent(@PathVariable Integer courseId, @PathVariable Integer studentId) {
-        return handleStringRequest(() -> courseService.unenrollStudent(courseId, studentId));
+        return handleStringRequest(() -> courseService.unenrollStudent(courseId, studentId), "Student unenrolled from course successfully.");
     }
-
 }
